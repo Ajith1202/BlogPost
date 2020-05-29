@@ -1,0 +1,87 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+    <style>
+
+        #add-button{
+            position: relative;
+            bottom: 20px;
+            right: 20px;
+            align-content: center;
+            color: black;
+            z-index: 5;
+
+        }
+        #green{
+            z-index: 1;
+            position:relative;
+            bottom: 20px;
+            right: 20px;
+            height: 40px;
+            border-radius: 50px;
+            width: 40px;
+            background-color: rgb(0, 139, 86);
+        }
+        #add-button{
+        position: fixed;
+        margin-bottom: 30;
+        margin-right: 30px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: x-large;
+        flex:1;
+        padding-top: 0;
+        padding-bottom: 0;
+        align-content: space-between;
+        bottom: -10px;
+        right: -10px;
+        color: #3a4949;
+        background-color: chartreuse;
+        transition: transform 0.3s;
+
+        }  
+        #add-button:hover{
+            transform: scale(1.1);
+        }
+        a{
+            width: fit-content;
+        } 
+        .card{
+            padding-bottom: 0;
+            margin-bottom: 2.5%;
+            box-sizing:content-box;
+        }     
+        #update-button, #delete-button{
+            width: auto;
+        }
+        #each-card{
+            box-sizing: content-box;
+            box-shadow:0 0 30px 2px black ;
+            transition: transform 0.3s;
+        }
+        #each-card:hover{
+            transform: scale(1.04);
+        }
+
+    </style>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-9">    
+                {% for object in objects %}
+                <div id="each-card" class="card card-body">
+                    <a href="{% url 'detail' object.id %}">{{ object.title }}</a>
+                    <p>{{ object.content }}</p>
+                    <a id="update-button" class="btn btn-sm btn-outline-info" href="{% url 'update' object.id %}">Update</a>
+                    <a id="delete-button" class="btn btn-sm btn-outline-danger" href="{% url 'delete' object.id %}">Delete</a>
+                    <br>
+                </div>    
+                {% endfor %}    
+            </div>
+            <div id="right-column" class="col-3"> 
+                <a href="{% url 'create' %}"><button id="add-button" class="btn btn-md">+</button></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

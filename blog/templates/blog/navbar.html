@@ -1,0 +1,29 @@
+<style>
+    .navbar{
+        display: flex;
+        flex-direction: row;
+    }
+    .navbar-brand{
+        flex:1;
+    }
+    form{
+        margin: auto;
+        padding: auto;
+    }
+    nav{
+        flex: 1;
+        flex-direction: row;
+    }
+</style>
+
+
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand">BlogPost</a>
+    
+    <form class="form-inline" method="POST" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search for Title" aria-label="Search">
+        <button id="search" class="btn btn-success my-2 my-sm-0" type="submit"><img src="https://img.icons8.com/material-sharp/24/000000/search.png" /></button>
+    </form>
+</nav>

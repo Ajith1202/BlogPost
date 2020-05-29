@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<style>
+    h3{
+        margin-top: 3%;
+        margin-left: auto;
+        margin-right: auto;
+        color:whitesmoke;
+        outline: solid;
+        width: fit-content;
+    }
+    #update-form{
+        flex: auto;
+        flex-direction: column;
+        outline-style: solid;
+    }
+    #button-submit{
+        margin-top: 5px;
+    }
+</style>
+
+<h3>Update</h3>
+<br>
+<form id="update-form" class="card card-body" method="POST" action="">
+    {% csrf_token %}
+    {{ form }}
+    <input id="button-submit" class="btn btn-md btn-success" type="submit">
+</form>
+
+{% endblock %}

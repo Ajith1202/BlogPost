@@ -1,0 +1,76 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<style>
+    .number{
+        margin-top: 3%;
+
+        color:whitesmoke;
+
+        width: fit-content;
+    }
+    #results1, #results2{
+            box-sizing: content-box;
+            box-shadow:0 0 30px 2px black ;
+            transition: transform 0.3s;
+    }
+    #results1:hover{
+            transform: scale(1.04);
+    }
+    #results2:hover{
+            transform: scale(1.04);
+    } 
+    .card{
+            padding-bottom: 0;
+            margin-bottom: 2.5%;
+            box-sizing:content-box;
+    }     
+    #update, #delete{
+            width: auto;
+    }  
+    #update1, #delete1{
+            width: auto;
+    }  
+    a{
+        width: fit-content;
+    }     
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            {% if length > 1 %}
+                <p class="number">Showing {{ length }} posts...</p>
+                {% for object in obj %}
+                    <div id="results1" class="card card-body">
+                        <a href="{% url 'detail' object.id %}">{{ object.title }}</a>
+                        <p>{{ object.content }}</p>
+                        <a id="update" class="btn btn-sm btn-outline-info" href="{% url 'update' object.id %}">Update</a>
+                        <a id="delete" class="btn btn-sm btn-outline-danger" href="{% url 'delete' object.id %}">Delete</a>
+                        <br>
+                    </div>
+                {% endfor %}
+
+            {% elif length == 1 %}    
+                <p class="number">Showing {{ length }} post...</p>
+                {% for object in obj %}
+                    <div id="results2" class="card card-body">
+                        <a href="{% url 'detail' object.id %}">{{ object.title }}</a>
+                        <p>{{ object.content }}</p>
+                        <a id="update1" class="btn btn-sm btn-outline-info" href="{% url 'update' object.id %}">Update</a>
+                        <a id="delete1" class="btn btn-sm btn-outline-danger" href="{% url 'delete' object.id %}">Delete</a>
+                        <br>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+                <p class="number">No matching posts found..</p>
+            {% endif %} 
+               
+        </div>
+        <div id="right-column" class="col-3">
+        </div>
+    </div>    
+</div>
+
+{% endblock %}
